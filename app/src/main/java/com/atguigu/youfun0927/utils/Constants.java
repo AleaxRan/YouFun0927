@@ -65,13 +65,19 @@ public class Constants {
 
     public static final String LG_4 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=1 &aid=95";
 
-    public static final String LG_5 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=1 &aid=2243";
+// public static final String LG_5 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=1 &aid=2243";
 
-    public static final String LG_6 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=1& aid=2245";
+    public static final String LG_5 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=1& aid=2245";
 
-    public static final String LG_7 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=1&aid=94";
+// public static final String LG_7 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=1&aid=94";
 
-    public static final String LG_8 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=1&aid=100";
+// public static final String LG_8 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=1&aid=100";
+
+    public static final String LG_6 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=1&aid=96";
+
+    public static final String LG_7 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=1&aid=99";
+    public static final String LG_8 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osMode=genymotion4.2.2&osCode=android&cid=1&pageIndex=1&osVersion=17&deviceId=ffffffff-e6e7-d772-ffff-ffff99d603a9&token=395d4f778969d0f1258b33f66656dc2a&source=android&version=v4.2.5&osName=genymotion4.2.2&appName=youfanguanfang&aid=104";
+
 
     public static final String LG_9 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=1&aid=96";
 

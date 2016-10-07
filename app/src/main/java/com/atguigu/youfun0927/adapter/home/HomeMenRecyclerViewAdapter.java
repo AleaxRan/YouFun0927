@@ -207,9 +207,6 @@ public class HomeMenRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHol
             itemViewType = NOTICE;
         }
 
-
-
-
         return itemViewType;
     }
 
