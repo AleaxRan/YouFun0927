@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -47,7 +46,7 @@ public class MainActivity extends SlidingFragmentActivity {
 
         findView();
 
-        initTitlebar();
+        //initTitlebar();
 
         //添加侧滑菜单
         initSlidingMenu();
@@ -63,20 +62,20 @@ public class MainActivity extends SlidingFragmentActivity {
 
     }
 
-    private void initTitlebar() {
-        ib_menu.setVisibility(View.VISIBLE);
-        ib_menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                MainActivity.this.getSlidingMenu().toggle();
-
-            }
-        });
-
-        ib_search.setVisibility(View.VISIBLE);
-
-    }
+//    private void initTitlebar() {
+//        ib_menu.setVisibility(View.VISIBLE);
+//        ib_menu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                MainActivity.this.getSlidingMenu().toggle();
+//
+//            }
+//        });
+//
+//        ib_search.setVisibility(View.VISIBLE);
+//
+//    }
 
     private void findView() {
         rg_main = (RadioGroup) findViewById(R.id.rg_main);

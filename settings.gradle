@@ -1,1 +1,1 @@
-include ':app', ':SlidingMenu_library'
+include ':app', ':SlidingMenu_library', ':BGABanner_demo', ':okhttputils_library', ':MaterialRefresh_library'

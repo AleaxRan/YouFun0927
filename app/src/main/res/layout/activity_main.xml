@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <!--标题拦截-->
-    <include layout="@layout/titlebar"/>
+    <!--<include layout="@layout/titlebar"/>-->
 
     <!--用Framelayou替换各个Fragment-->
     <FrameLayout

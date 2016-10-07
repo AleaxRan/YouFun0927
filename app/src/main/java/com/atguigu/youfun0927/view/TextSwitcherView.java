@@ -1,0 +1,134 @@
+package com.atguigu.youfun0927.view;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.os.Handler;
+import android.os.Message;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.TextSwitcher;
+import android.widget.TextView;
+import android.widget.ViewSwitcher;
+
+import com.atguigu.youfun0927.R;
+import com.atguigu.youfun0927.utils.LogUtil;
+
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
+/**
+ * Created by Administrator on 2016/10/5.
+ */
+public class TextSwitcherView extends TextSwitcher implements ViewSwitcher.ViewFactory {
+    private ArrayList<String> reArrayList = new ArrayList<String>();
+    private int resIndex = 0;
+    private final int UPDATE_TEXTSWITCHER = 1;
+    private int timerStartAgainCount = 0;
+    private Context mContext;
+
+    public TextSwitcherView(Context context) {
+
+        super(context);
+        // TODO Auto-generated constructor stub
+        mContext = context;
+        init();
+    }
+
+    public TextSwitcherView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        mContext = context;
+        init();
+        // TODO Auto-generated constructor stub
+    }
+
+    private void init() {
+        this.setFactory(this);
+        this.setInAnimation(getContext(), R.anim.vertical_in);
+        this.setOutAnimation(getContext(), R.anim.vertical_out);
+        Timer timer = new Timer();
+        timer.schedule(timerTask, 1, 2000);
+
+    }
+
+    TimerTask timerTask = new TimerTask() {
+
+        @Override
+        public void run() {   //不能在这里创建任何UI的更新，toast也不行
+            // TODO Auto-generated method stub
+            Message msg = new Message();
+            msg.what = UPDATE_TEXTSWITCHER;
+            handler.sendMessage(msg);
+        }
+    };
+    Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case UPDATE_TEXTSWITCHER:
+                    updateTextSwitcher();
+
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        ;
+    };
+
+    /**
+     * 需要传递的资源
+     *
+     * @param reArrayList
+     */
+    public void setArrayList(ArrayList<String> reArrayList) {
+        this.reArrayList = reArrayList;
+    }
+
+    public void updateTextSwitcher() {
+        if (this.reArrayList != null && this.reArrayList.size() > 0) {
+            if (reArrayList.size() > resIndex) {//防止越界
+                this.setText(this.reArrayList.get(resIndex++));
+
+                if (resIndex > this.reArrayList.size() - 1) {
+                    resIndex = 0;
+                }
+            } else {
+                LogUtil.e("textswitch rearraylist out of index!!!");
+            }
+        }
+
+    }
+
+    @Override
+    public View makeView() {
+        // TODO Auto-generated method stub
+        final TextView tView = new TextView(getContext());
+        tView.setTextSize(12);
+        tView.setTextColor(Color.BLACK);
+        //对textView设置监听事件
+        tView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onTextClickListener != null) {
+                    onTextClickListener.onTextClick(tView);
+
+                }
+            }
+        });
+        return tView;
+    }
+
+    public interface OnTextClickListener {
+        void onTextClick(TextView textView);
+    }
+
+    private OnTextClickListener onTextClickListener;
+
+    public void setOnTextClickListener(OnTextClickListener onTextClickListener) {
+        this.onTextClickListener = onTextClickListener;
+    }
+
+
+}
