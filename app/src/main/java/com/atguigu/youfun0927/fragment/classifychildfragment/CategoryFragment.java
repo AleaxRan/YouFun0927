@@ -1,6 +1,11 @@
 package com.atguigu.youfun0927.fragment.classifychildfragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.DataSetObserver;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +16,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.atguigu.youfun0927.R;
+import com.atguigu.youfun0927.activity.CategoryDetailActivity;
 import com.atguigu.youfun0927.base.Basefragment;
 import com.atguigu.youfun0927.bean.CategoryClassify;
+import com.atguigu.youfun0927.utils.CacheUtils;
 import com.atguigu.youfun0927.utils.Constants;
 import com.atguigu.youfun0927.utils.LogUtil;
 import com.bumptech.glide.Glide;
@@ -40,17 +47,23 @@ public class CategoryFragment extends Basefragment {
     MaterialRefreshLayout refreshlayout;
     private List<CategoryClassify.DataBean> data;
 
+    private String url;
+    private LocalBroadcastManager broadcastManager;
+    private BroadcastReceiver mItemViewListClickReceiver;
+
     @Override
     public View initView() {
 
         View view = LayoutInflater.from(mContext).inflate(R.layout.category_fragment, null);
         ButterKnife.bind(this, view);
-
+        LogUtil.e("caoima");
+        refreshlayout.autoRefresh();
         initRefresh();
 
         return view;
 
     }
+
 
     private void initRefresh() {
 
@@ -62,6 +75,7 @@ public class CategoryFragment extends Basefragment {
             }
         });
 
+
     }
 
     @Override
@@ -69,14 +83,56 @@ public class CategoryFragment extends Basefragment {
         super.initData();
         Log.e("TAG", "品类数据被初始化了");
 
+        getReciver();
+
         getDataFromNet();
 
     }
 
-    private void getDataFromNet() {
+
+    private void getReciver() {
+        broadcastManager = LocalBroadcastManager.getInstance(getActivity());
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.intent.action.CART_BROADCAST");//建议把它写一个公共的变量，这里方便阅读就不写了。
+        mItemViewListClickReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent){
+               getDataFromNet();
+            }
+        };
+        broadcastManager.registerReceiver(mItemViewListClickReceiver, intentFilter);
+
+    }
+
+    private void getDataFromNet() { if(CacheUtils.getInt(mContext, Constants.SEXURL) != -1) {
+
+        int sexurl = CacheUtils.getInt(mContext,Constants.SEXURL);
+
+        switch (sexurl){
+            case 0:
+                url = Constants.KIND_PINLEI_MEN;
+
+                break;
+            case 1:
+                url = Constants.KIND_SORTS_WOMAN;
+
+                break;
+            case 2:
+                url = Constants.KIND_PINLEI_LIFE;
+
+                break;
+        }
+
+
+    }else{
+
+        url = Constants.KIND_PINLEI_MEN;
+
+    }
+
 
         OkHttpUtils.get()
-                .url(Constants.KIND_PINLEI_MEN)
+                .url(url)
                 .id(100)
                 .build()
                 .execute(new MyStringCallBack());
@@ -178,8 +234,6 @@ public class CategoryFragment extends Basefragment {
 
             grouHolder.setData(dataBean);
 
-
-
             return convertView;
         }
 
@@ -195,10 +249,23 @@ public class CategoryFragment extends Basefragment {
 
                 childHolder = (ChildHolder) convertView.getTag();
             }
-            CategoryClassify.DataBean.SubsBean subsBean = data.get(groupPosition).getSubs().get(childPosition);
+            final CategoryClassify.DataBean.SubsBean subsBean = data.get(groupPosition).getSubs().get(childPosition);
 
             childHolder.setData(subsBean);
 
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext,CategoryDetailActivity.class);
+                    String id = subsBean.getId();
+                    String img = subsBean.getImg();
+                    String cate_name = subsBean.getCate_name();
+                    intent.putExtra("category_id",id);
+                    intent.putExtra("category_img",img);
+                    intent.putExtra("category_name",cate_name);
+                    mContext.startActivity(intent);
+                }
+            });
 
 
 
@@ -278,6 +345,8 @@ public class CategoryFragment extends Basefragment {
         public void setData(CategoryClassify.DataBean.SubsBean subsBean) {
 
             tv_sub.setText(subsBean.getCate_name());
+
+
         }
     }
 
@@ -287,5 +356,13 @@ public class CategoryFragment extends Basefragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        broadcastManager.unregisterReceiver(mItemViewListClickReceiver);
     }
 }

@@ -1,11 +1,13 @@
 package com.atguigu.youfun0927.adapter.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.atguigu.youfun0927.R;
+import com.atguigu.youfun0927.activity.JumpWebviewHomeActivity;
 import com.atguigu.youfun0927.base.BaseViewHolder;
 import com.atguigu.youfun0927.bean.HomeMen;
 import com.bumptech.glide.Glide;
@@ -84,18 +86,37 @@ public class IconHomeViewHolder extends BaseViewHolder {
     @Override
     public void setData(HomeMen.DataBean.ModuleBean modulelist) {
 
-        List<HomeMen.DataBean.ModuleBean.DataBean2> data = modulelist.getData();
+        final List<HomeMen.DataBean.ModuleBean.DataBean2> data = modulelist.getData();
 
         for(int i = 0; i < data.size(); i++) {
 
+            final HomeMen.DataBean.ModuleBean.DataBean2 dataBean2 = data.get(i);
+
             Glide.with(context)
-                    .load(data.get(i).getImg())
+                    .load(dataBean2.getImg())
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.ic_launcher)//真正加载的默认图片
                     .error(R.drawable.ic_launcher)//失败的默认图片
                     .into(imageViews.get(i));
 
-            textViews.get(i).setText(data.get(i).getTitle());
+            textViews.get(i).setText(dataBean2.getTitle());
+
+
+            imageViews.get(i).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String url = dataBean2.getJump().getUrl();
+                    Intent intent = new Intent(context, JumpWebviewHomeActivity.class);
+
+                    intent.putExtra("jumpurl",dataBean2.getJump().getUrl());
+                    intent.putExtra("title",dataBean2.getTitle());
+                    intent.putExtra("jumpname",dataBean2.getJump().getName());
+
+                    context.startActivity(intent);
+
+                }
+            });
+
         }
 
     }

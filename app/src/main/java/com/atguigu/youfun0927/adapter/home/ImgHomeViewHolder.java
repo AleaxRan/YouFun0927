@@ -1,12 +1,14 @@
 package com.atguigu.youfun0927.adapter.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.atguigu.youfun0927.R;
+import com.atguigu.youfun0927.activity.JumpWebviewHomeActivity;
 import com.atguigu.youfun0927.base.BaseViewHolder;
 import com.atguigu.youfun0927.bean.HomeMen;
 import com.bumptech.glide.Glide;
@@ -53,12 +55,28 @@ public class ImgHomeViewHolder extends BaseViewHolder {
             ImageView imageView = new ImageView(context);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
+            final HomeMen.DataBean.ModuleBean.DataBean2 dataBean2 = datalist.get(i);
             Glide.with(context)
-                    .load(datalist.get(i).getImg())
+                    .load(dataBean2.getImg())
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageView);
 
             viewList.add(imageView);
+
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(context,JumpWebviewHomeActivity.class);
+
+                    intent.putExtra("jumpurl",dataBean2.getJump().getUrl());
+                    intent.putExtra("title",dataBean2.getTitle());
+                    intent.putExtra("jumpname",dataBean2.getJump().getName());
+
+                    context.startActivity(intent);
+                }
+            });
+
         }
 
 //        banner.setAdapter(new BGABanner.Adapter() {

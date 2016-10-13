@@ -53,6 +53,8 @@ public class LgchidFragments extends Basefragment {
         View view = LayoutInflater.from(mContext).inflate(R.layout.lgchild_fragments, null);
         ButterKnife.bind(this, view);
 
+        refreshlayoutInspirationChild.autoRefresh();
+
         initRefresh();
         return view;
 

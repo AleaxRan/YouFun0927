@@ -5,6 +5,8 @@ package com.atguigu.youfun0927.utils;
  */
 public class Constants {
 
+    public static final String SEXURL = "sexurl";
+
     public static String ISFRISTLOGIN = "login";
     public static String STYLE = "style";
     public static String HOME_CASH_MAN = "home_cash_man";
@@ -118,6 +120,44 @@ public class Constants {
 
     public static final String SHAIXUAN="http://api.funwear.com/mbfun_server/index.php?m=Search&a=getSearchKey&osVersion=22&appName=youfanguanfang&useNewSearchEngine=1&source=android&keyword=";
 
+
+
+    public static final String BRANDDETAIL_PRE = "http://api.funwear.com/mbfun_server/index.php?m=Product&a=ProductClsCommonSearchFilter&osMode=genymotion4.2.2&osCode=android&cid=1&pageIndex=1&useNewSearchEngine=1&osVersion=17&deviceId=ffffffff-e6e7-d772-ffff-ffff99d603a9&token=395d4f778969d0f1258b33f66656dc2a&version=v4.2.5&CategoryId=1&osName=genymotion4.2.2&source=android&sortInfo=%7B%22desc%22%3A0%2C%22sortField%22%3A3%7D&brandCode=";
+    public static final String BRANDDETAIL_TAIL = "&inStock=1&pageSize=20&appName=youfanguanfang";
+    //品牌详情 价格
+    public static final String BRANDDETAIL_PRICE_PRE = "http://api.funwear.com/mbfun_server/index.php?m=Product&a=ProductClsCommonSearchFilter&osMode=genymotion4.2.2&osCode=android&cid=1&pageIndex=1&useNewSearchEngine=1&osVersion=17&deviceId=ffffffff-e6e7-d772-ffff-ffff99d603a9&token=395d4f778969d0f1258b33f66656dc2a&version=v4.2.5&CategoryId=1&osName=genymotion4.2.2&source=android&sortInfo=%7B%22desc%22%3A0%2C%22sortField%22%3A1%7D&brandCode=";
+    public static final String BRANDDETAIL_PRICE_TAIL = "&inStock=1&pageSize=20&appName=youfanguanfang";
+    //品牌详情 筛选
+    public static final String BRANDDETAIL_SELECT = "http://api.funwear.com/mbfun_server/index.php?m=Search&a=getSearchKey&osMode=genymotion4.2.2&osCode=android&cid=1&useNewSearchEngine=1&osVersion=17&deviceId=ffffffff-e6e7-d772-ffff-ffff99d603a9&token=395d4f778969d0f1258b33f66656dc2a&source=android&version=v4.2.5&osName=genymotion4.2.2&appName=youfanguanfang&brand=RJKK";
+    //品牌故事
+    public static final String BRAND_STORY_PRE = "http://api.funwear.com/mbfun_server/index.php?m=BrandMb&a=getAppBrandDetail&brandCode=";
+    public static final String BRAND_STORY_TAIL = "&cid=1&osMode=genymotion4.2.2&osCode=android&osVersion=17&deviceId=ffffffff-e6e7-d772-ffff-ffff99d603a9&token=395d4f778969d0f1258b33f66656dc2a&source=android&version=v4.2.5&osName=genymotion4.2.2&appName=youfanguanfang";
+
+
+
+    //品类上新
+    public static final String PINLEI_NEW_PRE = "http://api.funwear.com/mbfun_server/index.php?m=Product&a=ProductClsCommonSearchFilter&osMode=genymotion4.2.2&osCode=android&cid=1&pageIndex=1&useNewSearchEngine=1&osVersion=17&deviceId=ffffffff-e6e7-d772-ffff-ffff99d603a9&token=395d4f778969d0f1258b33f66656dc2a&version=v4.2.5&CategoryId=";
+    public static final String PINLEI_NEW_TAIL = "&osName=genymotion4.2.2&source=android&sortInfo=%7B%22desc%22%3A0%2C%22sortField%22%3A3%7D&inStock=1&pageSize=20&appName=youfanguanfang";
+    //品类热销
+    public static final String PINLEI_HOT_SALE_PRE = "http://api.funwear.com/mbfun_server/index.php?m=Product&a=ProductClsCommonSearchFilter&osMode=genymotion4.2.2&osCode=android&cid=1&pageIndex=1&useNewSearchEngine=1&osVersion=17&deviceId=ffffffff-e6e7-d772-ffff-ffff99d603a9&token=395d4f778969d0f1258b33f66656dc2a&version=v4.2.5&CategoryId=";
+    public static final String PINLEI_HOT_SALE_TAIL = "&osName=genymotion4.2.2&source=android&sortInfo=%7B%22desc%22%3A0%2C%22sortField%22%3A2%7D&inStock=1&pageSize=20&appName=youfanguanfang";
+    //品类价格
+    public static final String PINLEI_PRICE_PRE = "http://api.funwear.com/mbfun_server/index.php?m=Product&a=ProductClsCommonSearchFilter&osMode=genymotion4.2.2&osCode=android&cid=1&pageIndex=1&useNewSearchEngine=1&osVersion=17&deviceId=ffffffff-e6e7-d772-ffff-ffff99d603a9&token=395d4f778969d0f1258b33f66656dc2a&version=v4.2.5&CategoryId=";
+    public static final String PINLEI_PRICE_TAIL = "&osName=genymotion4.2.2&source=android&sortInfo=%7B%22desc%22%3A0%2C%22sortField%22%3A1%7D&inStock=1&pageSize=20&appName=youfanguanfang";
+    //品类筛选
+    public static final String PINLEI_SELECT = "http://api.funwear.com/mbfun_server/index.php?m=Search&a=getSearchKey&osMode=genymotion4.2.2&osCode=android&cid=1705&useNewSearchEngine=1&osVersion=17&deviceId=ffffffff-e6e7-d772-ffff-ffff99d603a9&token=395d4f778969d0f1258b33f66656dc2a&source=android&version=v4.2.5&osName=genymotion4.2.2&appName=youfanguanfang";
+
+
+
+    public static final String GOODS_DETAIL_SELECT_PRE = "http://api.funwear.com/mbfun_server/index.php?m=Product&a=ProductFilter&osMode=genymotion4.2.2&osCode=android&cid=1&osVersion=17&deviceId=ffffffff-e6e7-d772-ffff-ffff99d603a9&token=395d4f778969d0f1258b33f66656dc2a&version=v4.2.5&osName=genymotion4.2.2&prodClsIdList=";
+    public static final String GOODS_DETAIL_SELECT_TAIL = "&source=android&appName=youfanguanfang";
+
+    //商品详情
+    public static final String GOODS_DETAIL_PRE = "http://api.funwear.com/mbfun_server/index.php?m=Product&a=getProductDetails&code=";
+    public static final String GOODS_DETAIL_TAIL = "&osVersion=21&osMode=M353&appName=youfanguanfang&source=android&osName=M353&version=v4.2.5&deviceToken=00000000-7267-e961-21c8-725162cce401&token=395d4f778969d0f1258b33f66656dc2a&osCode=android&cid=1";
+    //提示
+    public static final String TIP_PRE = "http://api.funwear.com/mbfun_server/index.php?m=Product&a=getCommentAndConsult&code=";
+    public static final String TIP_TAIL = "&osVersion=21&osMode=M353&appName=youfanguanfang&source=android&osName=M353&version=v4.2.5&token=395d4f778969d0f1258b33f66656dc2a&osCode=android&cid=1";
 
 
 }

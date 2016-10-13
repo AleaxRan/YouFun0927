@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class MainActivity extends SlidingFragmentActivity {
     private ImageButton ib_menu;
     private TextView tv_title;
     private ImageButton ib_search;
+    private RadioButton rb_classify;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,6 @@ public class MainActivity extends SlidingFragmentActivity {
 
         initleftFragment();
 
-
     }
 
 //    private void initTitlebar() {
@@ -79,8 +80,7 @@ public class MainActivity extends SlidingFragmentActivity {
 
     private void findView() {
         rg_main = (RadioGroup) findViewById(R.id.rg_main);
-
-
+        rb_classify = (RadioButton) findViewById(R.id.rb_classify);
         tv_title = (TextView) findViewById(R.id.tv_title);
         ib_menu = (ImageButton) findViewById(R.id.ib_menu);
         ib_search = (ImageButton) findViewById(R.id.ib_search);
@@ -129,12 +129,14 @@ public class MainActivity extends SlidingFragmentActivity {
                     break;
                 case R.id.rb_classify://1
                     fPosition=1;
+
                     break;
                 case R.id.rb_inspiration://2
                     fPosition=2;
                     break;
                 case R.id.rb_shoppingbag:
                     fPosition=3;
+                    basefragmentArrayList.get(3).initData();
                     break;
                 case R.id.rb_setting:
                     fPosition=4;
@@ -228,5 +230,6 @@ public class MainActivity extends SlidingFragmentActivity {
 
         return super.onKeyDown(keyCode, event);
     }
+
 
 }

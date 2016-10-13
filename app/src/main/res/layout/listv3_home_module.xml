@@ -3,5 +3,19 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/img_little1"
+        android:background="@android:color/darker_gray"
+        android:layout_margin="5dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="90dp" />
+    <ImageView
+        android:id="@+id/img_little2"
+        android:background="@android:color/darker_gray"
+        android:layout_margin="5dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="90dp" />
 
 </LinearLayout>

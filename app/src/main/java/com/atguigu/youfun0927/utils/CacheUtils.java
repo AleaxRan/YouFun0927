@@ -34,6 +34,19 @@ public class CacheUtils {
         sp.edit().putBoolean(key, value).commit();
     }
 
+    public static void  putInt(Context context , String key , int value){
+
+        SharedPreferences sp = context.getSharedPreferences("atguigu", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor edit = sp.edit();
+
+        edit.putInt(key, value).commit();
+    }
+    public static int getInt(Context context, String key) {
+        SharedPreferences sp = context.getSharedPreferences("atguigu", Context.MODE_PRIVATE);
+        return sp.getInt(key, -1);
+    }
+
     /**
      * 缓存文本数据
      *

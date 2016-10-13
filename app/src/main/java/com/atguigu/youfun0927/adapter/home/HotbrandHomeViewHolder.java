@@ -1,6 +1,7 @@
 package com.atguigu.youfun0927.adapter.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.atguigu.youfun0927.R;
+import com.atguigu.youfun0927.activity.BrandDetailActivity;
 import com.atguigu.youfun0927.base.BaseViewHolder;
 import com.atguigu.youfun0927.bean.HomeMen;
 import com.bumptech.glide.Glide;
@@ -76,11 +78,23 @@ public class HotbrandHomeViewHolder extends BaseViewHolder {
 
             ImageView img_hotcate = (ImageView) view.findViewById(R.id.img_hotcate);
             // TextView tv_hotcatetitle = (TextView) convertView.findViewById(R.id.tv_hotcatetitle);
-
+            final HomeMen.DataBean.ModuleBean.DataBean2 dataBean2 = datalist.get(position);
             Glide.with(context)
-                    .load(datalist.get(position).getImg())
+                    .load(dataBean2.getImg())
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(img_hotcate);
+
+            img_hotcate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(context,BrandDetailActivity.class);
+
+                    intent.putExtra("brandJumpName",dataBean2.getJump().getName());
+
+                    context.startActivity(intent);
+                }
+            });
 
             return view;
 
